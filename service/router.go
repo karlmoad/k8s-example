@@ -12,6 +12,8 @@ type Route struct {
 	HandlerFunc http.HandlerFunc
 }
 
+type Routes []Route
+
 
 func NewRouter(routes []Route) *mux.Router {
 

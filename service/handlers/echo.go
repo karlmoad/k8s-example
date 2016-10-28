@@ -13,15 +13,14 @@ func Echo(rw http.ResponseWriter, req *http.Request) {
 	var r model.Request
 	err := decoder.Decode(&r)
 	if err != nil {
-		panic()
+		panic(err)
 	}
 	defer req.Body.Close()
 
 	var response model.Response
-	response.Input(r);
-	response.Response(fmt.Printf("RSP:%s", r.Statement))
-
-	encoder := json.NewEncoder(rw).Encode(response);
+	response.Input = r;
+	statement := fmt.Sprintf("RSP:%s", r.Statement)
+	response.Response = statement
 
 	rw.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	rw.WriteHeader(http.StatusOK)
