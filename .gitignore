@@ -27,5 +27,9 @@ _testmain.go
 /.idea/
 *.iml
 
+# compiled executable
+/main
+
+
 
 
