@@ -29,6 +29,7 @@ _testmain.go
 
 # compiled executable
 /main
+/k8s-example
 
 
 
