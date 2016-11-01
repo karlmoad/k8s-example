@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"encoding/json"
 	"github.com/karlmoad/k8s-example/model"
+	"os"
 )
 
 func Echo(rw http.ResponseWriter, req *http.Request) {
@@ -17,10 +18,15 @@ func Echo(rw http.ResponseWriter, req *http.Request) {
 	}
 	defer req.Body.Close()
 
+	secret := os.Getenv("SECRET")
+
+	if secret == "" {
+		secret = "NO MORE SECRETS:"
+	}
+
 	var response model.Response
 	response.Input = r;
-	statement := fmt.Sprintf("RSP:%s", r.Statement)
-	response.Response = statement
+	response.Response = fmt.Sprintf("%s:%s", secret, r.Statement)
 
 	rw.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	rw.WriteHeader(http.StatusOK)

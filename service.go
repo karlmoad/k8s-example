@@ -5,6 +5,7 @@ import (
 	"github.com/karlmoad/k8s-example/service/handlers"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -18,7 +19,13 @@ func main() {
 		},
 	}
 
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "8080"
+	}
+
 	router := service.NewRouter(routes)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
