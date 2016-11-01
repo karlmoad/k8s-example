@@ -17,12 +17,12 @@ navigate to the github.com/karlmoad/k8s-example directory within your local `$GO
 ##### Execute the build
 
 ```shell
-$ docker build -t k8s-example:latest .
+$ make
 ```
 
 ##### Run the image
 
 ```shell
-$ docker run -p 8080:8080 -d k8s-example:latest
+$ docker run -p 8080:8080 -d moadkj/k8s-example:<version>
 
 ```
