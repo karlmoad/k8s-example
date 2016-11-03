@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ex-api
+  annotations:
+    emmie-update: ex-api
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ex-api
+    spec:
+      containers:
+      - name: ex-api
+        imagePullPolicy: Always
+        image: docker-repo-dev.upmc.edu/moadkj/k8s-example:1.0.0
+        ports:
+          - name: http
+            containerPort: 8080
