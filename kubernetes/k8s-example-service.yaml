@@ -13,4 +13,3 @@ spec:
       protocol: "TCP"
   selector:
     app: ex-api
-  type: LoadBalancer
